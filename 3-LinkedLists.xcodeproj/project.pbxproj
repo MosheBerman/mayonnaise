@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		46C0457C1665D1D300638179 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46C0457B1665D1D300638179 /* main.cpp */; };
 		46C0457E1665D1D300638179 /* __LinkedLists.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 46C0457D1665D1D300638179 /* __LinkedLists.1 */; };
+		46C0458B1666A8F000638179 /* FileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46C045891666A8F000638179 /* FileIO.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		46C045771665D1D300638179 /* 3-LinkedLists */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "3-LinkedLists"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C0457B1665D1D300638179 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		46C0457D1665D1D300638179 /* __LinkedLists.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = __LinkedLists.1; sourceTree = "<group>"; };
+		46C045891666A8F000638179 /* FileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileIO.cpp; sourceTree = "<group>"; };
+		46C0458A1666A8F000638179 /* FileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileIO.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +64,19 @@
 			isa = PBXGroup;
 			children = (
 				46C0457B1665D1D300638179 /* main.cpp */,
+				46C045881666A8F000638179 /* FileIO */,
 				46C0457D1665D1D300638179 /* __LinkedLists.1 */,
 			);
 			path = "3-LinkedLists";
+			sourceTree = "<group>";
+		};
+		46C045881666A8F000638179 /* FileIO */ = {
+			isa = PBXGroup;
+			children = (
+				46C045891666A8F000638179 /* FileIO.cpp */,
+				46C0458A1666A8F000638179 /* FileIO.h */,
+			);
+			path = FileIO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46C0457C1665D1D300638179 /* main.cpp in Sources */,
+				46C0458B1666A8F000638179 /* FileIO.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +224,7 @@
 				46C045831665D1D300638179 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
