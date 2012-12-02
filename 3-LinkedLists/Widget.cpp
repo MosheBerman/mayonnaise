@@ -12,6 +12,12 @@ int Widget::getQuantity(){
     return quantity;
 }
 
+void Widget::setQuantity(int _quantity){
+    if(_quantity >=0){
+        quantity = _quantity;
+    }
+}
+
 double Widget::getPrice(){
     return price;
 }

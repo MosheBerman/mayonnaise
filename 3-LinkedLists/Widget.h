@@ -21,6 +21,8 @@ public:
     //  Getters and setters
     
     int getQuantity();
+    void setQuantity(int);
+    
     double getPrice();
 };
 
