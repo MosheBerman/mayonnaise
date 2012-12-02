@@ -7,3 +7,11 @@
 //
 
 #include "Widget.h"
+
+int Widget::getQuantity(){
+    return quantity;
+}
+
+double Widget::getPrice(){
+    return price;
+}
