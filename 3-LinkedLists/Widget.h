@@ -11,4 +11,12 @@
 
 #include <iostream>
 
+class Widget {
+    double price;
+    int quantity;
+public:
+    Widget():price(0), quantity(0){};
+    Widget(double _price,int _quantity):price(_price), quantity(_quantity){};
+};
+
 #endif /* defined(____LinkedLists__Widget__) */
