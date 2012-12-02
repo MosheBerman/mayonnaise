@@ -43,6 +43,6 @@ public:
     Widget* dequeue();
 };
 
-
+typedef Widget* WidgetPtr;
 
 #endif /* defined(____LinkedLists__Widget__) */
