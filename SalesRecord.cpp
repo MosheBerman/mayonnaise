@@ -17,12 +17,10 @@ SalesRecord::SalesRecord(){
 }
 
 SalesRecord::SalesRecord(std::string record){
-    
     recordType = recordTypeFromString(record);
     quantity = quantityFromString(record);
     saleAmount = saleAmountFromString(record);
     pricePerWidget = priceFromString(record);
-    
 }
 
 /* Getters and Setters */
