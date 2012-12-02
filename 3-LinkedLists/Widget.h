@@ -18,7 +18,7 @@ public:
     Widget():price(0), quantity(0){};
     Widget(double _price,int _quantity):price(_price), quantity(_quantity){};
     
-    //  Getters & setters
+    //  Getters and setters
     
     int getQuantity();
     double getPrice();
