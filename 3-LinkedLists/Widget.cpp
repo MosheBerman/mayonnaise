@@ -8,19 +8,29 @@
 
 #include "Widget.h"
 
-Widget *Widget::first;
-Widget *Widget::last;
+Widget *Widget::first = NULL;
+Widget *Widget::last = NULL;
 
-int Widget::getQuantity(){
-    return quantity;
-}
+//
+//  Linked List
+//
 
-void Widget::setQuantity(int _quantity){
-    if(_quantity >=0){
-        quantity = _quantity;
+void Widget::enqueue(Widget *widget){
+    if (last != NULL) {
+        last->next = widget;
     }
+    if (first == NULL) {
+        first = widget; //  If the list was empty, set first widget
+    }
+    last = widget;
 }
 
-double Widget::getPrice(){
-    return price;
+Widget* Widget::dequeue(){
+    Widget *widget = first;
+    
+    if (widget != NULL) {
+        first = widget->next;
+    }
+    
+    return widget;
 }
