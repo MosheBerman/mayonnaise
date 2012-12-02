@@ -1,5 +1,5 @@
 //
-//  SalesRecord.cpp
+//  Record.cpp
 //  3-LinkedLists
 //
 //  Created by Moshe Berman on 12/2/12.
@@ -9,14 +9,14 @@
 #include "Record.h"
 #include <sstream>
 
-SalesRecord::SalesRecord(){
-    recordType = kSalesRecordTypeSale;
+Record::Record(){
+    recordType = kRecordTypeSale;
     quantity = 0;
     saleAmount = 0;
     pricePerWidget = 0;
 }
 
-SalesRecord::SalesRecord(std::string record){
+Record::Record(std::string record){
     recordType = recordTypeFromString(record);
     quantity = quantityFromString(record);
     saleAmount = saleAmountFromString(record);
@@ -25,37 +25,37 @@ SalesRecord::SalesRecord(std::string record){
 
 /* Getters and Setters */
 
-kSalesRecordType SalesRecord::getRecordType(){
+kRecordType Record::getRecordType(){
     return recordType;
 }
 
-void SalesRecord::setRecordType(kSalesRecordType _recordType){
+void Record::setRecordType(kRecordType _recordType){
     recordType = _recordType;
 }
 
-int SalesRecord::getQuantity(){
+int Record::getQuantity(){
     return quantity;
 }
 
-void SalesRecord::setQuantity(int _quantity){
+void Record::setQuantity(int _quantity){
     quantity = _quantity;   //  Allow negatives for refunds
 }
 
-int SalesRecord::getSaleAmount(){
+int Record::getSaleAmount(){
     return saleAmount;
 }
 
-void SalesRecord::setSaleAmount(int _saleAmount){
+void Record::setSaleAmount(int _saleAmount){
     if (_saleAmount >= 0) { //  Can't have negative percentages for sales
         saleAmount = _saleAmount;
     }
 }
 
-double SalesRecord::getPricePerWidget(){
+double Record::getPricePerWidget(){
     return pricePerWidget;
 }
 
-void SalesRecord::setPricePerWidget(int _pricePerWidget){
+void Record::setPricePerWidget(int _pricePerWidget){
     if(_pricePerWidget >= 0){
         pricePerWidget = _pricePerWidget;
     }
@@ -64,24 +64,24 @@ void SalesRecord::setPricePerWidget(int _pricePerWidget){
 
 /* Parser methods */
 
-kSalesRecordType SalesRecord::recordTypeFromString(std::string record){
+kRecordType Record::recordTypeFromString(std::string record){
     
     char c = record[0];
     
     if (c == 'S') {
-        return kSalesRecordTypeSale;
+        return kRecordTypeSale;
     }
     else if(c == 'R'){
-        return kSalesRecordTypeReciept;
+        return kRecordTypeReciept;
     }
     
-    return kSalesRecordTypePromotion;   //  Assume that we have valid
+    return kRecordTypePromotion;   //  Assume that we have valid
                                         //  input and that we will have
                                         //  processed the other two kinds
                                         //  of records.
 }
 
-int SalesRecord::quantityFromString(std::string record){
+int Record::quantityFromString(std::string record){
 
     std::istringstream recordStream(record);
     
@@ -94,7 +94,7 @@ int SalesRecord::quantityFromString(std::string record){
     return quantity;
 }
 
-int SalesRecord::saleAmountFromString(std::string record){
+int Record::saleAmountFromString(std::string record){
 
     std::istringstream recordStream(record);
     
@@ -107,7 +107,7 @@ int SalesRecord::saleAmountFromString(std::string record){
     return quantity;
 }
 
-double SalesRecord::priceFromString(std::string record){
+double Record::priceFromString(std::string record){
     std::istringstream recordStream(record);
     
     char c;

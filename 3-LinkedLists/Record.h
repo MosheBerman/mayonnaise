@@ -1,31 +1,31 @@
 //
-//  SalesRecord.h
+//  Record.h
 //  3-LinkedLists
 //
 //  Created by Moshe Berman on 12/2/12.
 //  Copyright (c) 2012 Moshe Berman. All rights reserved.
 //
 
-#ifndef ____LinkedLists__SalesRecord__
-#define ____LinkedLists__SalesRecord__
+#ifndef ____LinkedLists__Record__
+#define ____LinkedLists__Record__
 
 #include <iostream>
 
-enum kSalesRecordType {
-    kSalesRecordTypeSale = 0,
-    kSalesRecordTypeReciept = 1,
-    kSalesRecordTypePromotion
+enum kRecordType {
+    kRecordTypeSale = 0,
+    kRecordTypeReciept = 1,
+    kRecordTypePromotion
     };
 
 class Record {
-    kSalesRecordType recordType;
+    kRecordType recordType;
     int quantity;
     int saleAmount;
     double pricePerWidget;
     
     //  Parser Methods
 
-    kSalesRecordType recordTypeFromString(std::string);
+    kRecordType recordTypeFromString(std::string);
     int quantityFromString(std::string);
     int saleAmountFromString(std::string);
     double priceFromString(std::string);
@@ -37,8 +37,8 @@ public:
     
     //  Getters and setters
     
-    kSalesRecordType getRecordType();
-    void setRecordType(kSalesRecordType);
+    kRecordType getRecordType();
+    void setRecordType(kRecordType);
     
     int getQuantity();
     void setQuantity(int);
@@ -50,4 +50,4 @@ public:
     void setPricePerWidget(int);
 };
 
-#endif /* defined(____LinkedLists__SalesRecord__) */
+#endif /* defined(____LinkedLists__Record__) */
