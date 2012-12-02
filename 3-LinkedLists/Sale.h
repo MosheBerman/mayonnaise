@@ -6,6 +6,20 @@
 //  Copyright (c) 2012 Moshe Berman. All rights reserved.
 //
 
+/*
+
+ This class represents a *part* of
+ a sale of widgets, since different
+ pieces of stock have varying prices.
+ 
+ Each batch of widgets that is sold
+ is put into a "Sale" instance and 
+ then read out at the end of the 
+ sellNumberOfWidgets() function in
+ the Queue class.
+ 
+ */
+
 #ifndef ____LinkedLists__Sale__
 #define ____LinkedLists__Sale__
 
