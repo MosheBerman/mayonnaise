@@ -10,13 +10,12 @@
 #define ____LinkedLists__Storekeeper__
 
 #include <iostream>
-#include <Storekeeper>
 #include "Widget.h"
 #import "Sale.h"
 
 
 class Storekeeper {
-    std::deque<Widget> widgets;
+    Widget* widgets;
     int numberOfPromotionsRemaining;
     double promotionRate;
 public:
@@ -32,7 +31,8 @@ public:
     //  Buy and sell widgets
     
     void receiveNumWidgetsAtWidgetsAtPrice(int, double);
-    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches);   //  Pass along an previous batches so we can recurse
+    //  Pass along an previous batches so we can recurse
+    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches);
 
     //  Sale helper methods
     double quantityAvailableForDesiredQuantity(Widget, int);
