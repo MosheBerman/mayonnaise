@@ -8,6 +8,9 @@
 
 #include "Widget.h"
 
+Widget *Widget::first;
+Widget *Widget::last;
+
 int Widget::getQuantity(){
     return quantity;
 }
