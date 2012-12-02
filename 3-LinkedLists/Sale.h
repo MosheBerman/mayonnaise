@@ -16,7 +16,7 @@
  is put into a "Sale" instance and 
  then read out at the end of the 
  sellNumberOfWidgets() function in
- the Queue class.
+ the Storekeeper class.
  
  */
 

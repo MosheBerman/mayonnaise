@@ -1,25 +1,27 @@
 //
-//  Queue.h
+//  Storekeeper.h
 //  3-LinkedLists
 //
 //  Created by Moshe Berman on 12/2/12.
 //  Copyright (c) 2012 Moshe Berman. All rights reserved.
 //
 
-#ifndef ____LinkedLists__Queue__
-#define ____LinkedLists__Queue__
+#ifndef ____LinkedLists__Storekeeper__
+#define ____LinkedLists__Storekeeper__
 
 #include <iostream>
-#include <queue>
+#include <Storekeeper>
 #include "Widget.h"
+#import "Sale.h"
 
-class Queue {
+
+class Storekeeper {
     std::deque<Widget> widgets;
     int numberOfPromotionsRemaining;
     double promotionRate;
 public:
     
-    Queue():numberOfPromotionsRemaining(0), promotionRate(0.0){};
+    Storekeeper():numberOfPromotionsRemaining(0), promotionRate(0.0){};
     
     //  Getters and setters
     
@@ -30,11 +32,12 @@ public:
     //  Buy and sell widgets
     
     void receiveNumWidgetsAtWidgetsAtPrice(int, double);
-    void sellNumberOfWidgets(int, double);  //  Pass a price along so we can recurse
+    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches);   //  Pass along an previous batches so we can recurse
 
     //  Sale helper methods
     double quantityAvailableForDesiredQuantity(Widget, int);
     double priceForNWidgetsAtPricePerItem(int, double);
+    void printSales(std::vector<Sale> &sales);
 };
 
-#endif /* defined(____LinkedLists__Queue__) */
+#endif /* defined(____LinkedLists__Storekeeper__) */

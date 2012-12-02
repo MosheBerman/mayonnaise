@@ -1,47 +1,55 @@
 //
-//  Queue.cpp
+//  Storekeeper.cpp
 //  3-LinkedLists
 //
 //  Created by Moshe Berman on 12/2/12.
 //  Copyright (c) 2012 Moshe Berman. All rights reserved.
 //
 
-#include "Queue.h"
+#include "Storekeeper.h"
+#include <numeric>
 
-void Queue::setPromotionRate(double _promotionRate){
+void Storekeeper::setPromotionRate(double _promotionRate){
     //  A negative "promotion" rate
     // could mean a temporary markup.
     promotionRate = _promotionRate;
 }
 
-int Queue::getNumberOfPromotions(){
+int Storekeeper::getNumberOfPromotions(){
     return numberOfPromotionsRemaining;
 }
 
-void Queue::beginPromotion(){
+void Storekeeper::beginPromotion(){
     numberOfPromotionsRemaining = 2;
 }
 
-void Queue::receiveNumWidgetsAtWidgetsAtPrice(int numberOfWidgets, double price){
+void Storekeeper::receiveNumWidgetsAtWidgetsAtPrice(int numberOfWidgets, double price){
     Widget widget = Widget(numberOfWidgets, price);
     widgets.push_back(widget);
 }
 
-void Queue::sellNumberOfWidgets(int numberOfWidgetsToSell, double price){
+void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches){
     
     //
     //  If there are no widgets left, print out
-    //  the message mentioned in the spec,
-    //  and return.
+    //  the message mentioned in the spec, and return.
     //
     
-    if (widgets.empty()) {
+    if (widgets.empty() || numberOfWidgetsToSell == 0) {
+        
+        
         std::cout << "remainder " << numberOfWidgetsToSell << " not available." << std::endl;
         return;
     }
     
     //
-    //  If there are more widgets, pull them off of the queue.
+    //  Keep track of batches of sales
+    //
+    
+    std::vector<Sale> sales;
+    
+    //
+    //  If there are more widgets, pull them off of the Storekeeper.
     //
     
     Widget nextBatchOfWidgets = widgets.front();
@@ -52,14 +60,10 @@ void Queue::sellNumberOfWidgets(int numberOfWidgetsToSell, double price){
     
     double pricePerItem = nextBatchOfWidgets.getPrice();
     double quantityAvailable = quantityAvailableForDesiredQuantity(nextBatchOfWidgets, numberOfWidgetsToSell);
-
-    //  Add the price up.
     
-    double priceOfBatch = priceForNWidgetsAtPricePerItem(quantityAvailable, pricePerItem);
-    price += priceOfBatch;
+    //
+    Sale sale = Sale(quantityAvailable, pricePerItem);
     
-    
-  
 }
 
 //
@@ -68,7 +72,7 @@ void Queue::sellNumberOfWidgets(int numberOfWidgetsToSell, double price){
 //  otherwise, 
 //
 
-double Queue::quantityAvailableForDesiredQuantity(Widget batch, int numberOfWidgetsToSell) {
+double Storekeeper::quantityAvailableForDesiredQuantity(Widget batch, int numberOfWidgetsToSell) {
     
     double quantityAvailable = batch.getQuantity();
     
@@ -95,7 +99,7 @@ double Queue::quantityAvailableForDesiredQuantity(Widget batch, int numberOfWidg
 //  Calculate the price of the batch...
 //
 
-double Queue::priceForNWidgetsAtPricePerItem(int n, double pricePerItem){
+double Storekeeper::priceForNWidgetsAtPricePerItem(int n, double pricePerItem){
     
     double priceOfBatch = pricePerItem * n;
     priceOfBatch *= 1.3;   //  Apply the 30 percent markup
@@ -108,4 +112,20 @@ double Queue::priceForNWidgetsAtPricePerItem(int n, double pricePerItem){
     }
     
     return priceOfBatch;
+}
+
+int sum(int sum, Sale sale){
+    return sum += sale.getQuantity();
+}
+
+void Storekeeper::printSales(std::vector<Sale> &sales){
+    
+    int itemsSold = std::accumulate(sales.begin(), sales.end(), 0, sum);
+
+
+    
+}
+
+void sum(){
+    
 }
