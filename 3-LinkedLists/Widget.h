@@ -47,21 +47,22 @@ public:
 //  Linked List
 //
 
-void makeNode(Widget *widget, double price, int quantity){
-    Widget *w = new Widget(price, quantity);
-    w->previous = widget->last;
-    w->previous->next = w;
-    widget->last = w;
+void makeNode(Widget *list, double price, int quantity){
+    Widget *widget = new Widget(price, quantity);
+    widget->previous = list->last;
+    widget->previous->next = widget;
+    list->last = widget;
 }
 
-Widget* freeNode(Widget *widget){
-    Widget *w = widget->first;
+Widget* freeNode(Widget *list){
+    Widget *widget = list->first;
     
-    if (w != NULL) {
-        w->first = w->next;
+    if (widget != NULL) {
+        list->first = widget->next;
+        list->first->previous = NULL;
     }
     
-    return w;
+    return widget;
 }
 
 #endif /* defined(____LinkedLists__Widget__) */
