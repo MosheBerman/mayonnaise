@@ -8,33 +8,83 @@
 
 #include "Widget.h"
 
-Widget *Widget::first = NULL;
-Widget *Widget::last = NULL;
-
 //
-//  Linked List
+//  Allocates and returns a fresh widget
 //
 
-void Widget::enqueue(Widget *widget){
-    if (last != NULL) {
-        last->next = widget;
-    }
-    if (first == NULL) {
-        first = widget; //  If the list was empty, set first widget
-    }
-    last = widget;
+WidgetPointer createWidget(){
+    WidgetPointer p;
+    p = (WidgetPointer)malloc(sizeof(struct Widget));
+    return (p);
 }
 
-Widget* Widget::dequeue(){
-    Widget *widget = first;
+//
+//  Free up the memory consumed by a given node
+//
+
+void freeNode(WidgetPointer p){
+    free(p);
+}
+
+//
+//  Checks if the queue is empty
+//
+
+bool empty(struct WidgetQueue *pointerQueue){
+    return pointerQueue->front == NULL;
+}
+
+//
+//  Insert a given price and quantity into the queue
+//
+
+void insert(struct WidgetQueue *pointerQueue, int quantity, double price){
     
-    if (widget != NULL) {
-        first = widget->next;
+    WidgetPointer pointer;
+    
+    pointer = createWidget();
+    
+    pointer->price = price;
+    pointer->quantity = quantity;
+    pointer->next = NULL;
+    
+    if (pointerQueue->rear == NULL) {
+        pointerQueue->front = pointer;
+    }
+    else{
+        (pointerQueue->rear)->next = pointer;
     }
     
-    if (widget == widget->last) {
-        widget = last = NULL;
+    pointerQueue->rear = pointer;
+    
+    
+}
+
+
+//
+//  Remove the first item from the queue
+//  and returns its value
+//
+
+Widget remove(struct WidgetQueue *queue){
+    
+    WidgetPointer pointer;
+    Widget widget;
+    
+    if (empty(queue)) {
+        
     }
     
+    pointer = queue->front;
+    widget.price = pointer->price;
+    widget.quantity = pointer->quantity;
+    
+    queue->front = pointer->next;
+    
+    if (queue->front == NULL) {
+        queue->rear = NULL;
+    }
+    
+    freeNode(pointer);
     return widget;
 }
