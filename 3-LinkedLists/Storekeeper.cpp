@@ -27,7 +27,8 @@ void Storekeeper::beginPromotion(){
 }
 
 void Storekeeper::receiveNumWidgetsAtPrice(int numberOfWidgets, double price){
-    widgets->enqueue(new Widget(numberOfWidgets, price));
+    
+    insert(queue, numberOfWidgets, price);
     std::cout << "Stocking " << numberOfWidgets << " at $" << price << " each." << std::endl;
 }
 
@@ -49,23 +50,22 @@ void Storekeeper::sellWidgets(int numberOfWidgets){
 
 void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale> soldBatches){
 
-    
+    /*
     //
     //  If there are more widgets, pull them off of the Storekeeper.
     //
     
-    Widget *nextBatchOfWidgets = widgets;
+    Widget* nextBatchOfWidgets = remove(queue);
     
-    if (nextBatchOfWidgets == NULL) {
-        printSales(soldBatches, numberOfWidgetsToSell);
-        return;
-    }
+    printSales(soldBatches, numberOfWidgetsToSell);
+    return;
+
     
     //
     //  Get the price per widget for this batch
     //
     
-    double pricePerItem = nextBatchOfWidgets->price;
+    double pricePerItem = nextBatchOfWidgets.price;
     double quantityAvailable = quantityAvailableForDesiredQuantity(nextBatchOfWidgets, numberOfWidgetsToSell);
     
     //  Hang on to the sale until we're finished
@@ -98,6 +98,10 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
     else{
         printSales(soldBatches, numberOfWidgetsToSell);
     }
+    */
+    
+    
+    
 }
 
 //
@@ -105,18 +109,14 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
 //  If there's enough, take those and subtract them.
 //
 
-double Storekeeper::quantityAvailableForDesiredQuantity(Widget *batch, int numberOfWidgetsToSell) {
+double Storekeeper::quantityAvailableForDesiredQuantity(Widget batch, int numberOfWidgetsToSell) {
     
-    if (batch == NULL) {
-        return 0;
-    }
-    
-    double quantityAvailable = batch->quantity;
+    double quantityAvailable = batch.quantity;
     
     if (quantityAvailable >= numberOfWidgetsToSell) {
         quantityAvailable = numberOfWidgetsToSell;
         //  Update the quantity
-        batch->quantity = quantityAvailable - numberOfWidgetsToSell;
+        batch.quantity = quantityAvailable - numberOfWidgetsToSell;
     }
     
     return quantityAvailable;
@@ -210,15 +210,16 @@ void Storekeeper::printSales(std::vector<Sale> sales, int remainder){
 
 void Storekeeper::printOverstock(){
     
-    Widget *overstock = widgets->dequeue();
-    
-    if (overstock != NULL) {
-        std::cout << "\n\n\nOverstock:\n\n";
+    if (empty(queue)) {
+        return;
     }
     
-    while (overstock != NULL) {
-        std::cout << overstock->quantity << " remain at $";
-        std::cout << overstock -> price << std::endl;
-        overstock = widgets->dequeue();
+    std::cout << "\n\n\nOverstock:\n\n";
+    
+    while (!empty(queue)) {
+        Widget overstock = remove(queue);
+        std::cout << overstock.quantity << " remain at $";
+        std::cout << overstock.price << std::endl;
+    
     }
 }

@@ -16,7 +16,7 @@
 
 
 class Storekeeper {
-    Widget* widgets;
+    WidgetQueue *queue;
     int numberOfPromotionsRemaining;
     double promotionRate;
     
@@ -26,7 +26,7 @@ class Storekeeper {
 public:
     
     Storekeeper():numberOfPromotionsRemaining(0), promotionRate(0.0){
-        widgets = new Widget(0,0);
+        queue = new WidgetQueue();
     };
     
     //  Getters and setters
@@ -41,7 +41,7 @@ public:
     void sellWidgets(int);
 
     //  Sale helper methods
-    double quantityAvailableForDesiredQuantity(Widget*, int);
+    double quantityAvailableForDesiredQuantity(Widget, int);
     double priceForNWidgetsAtPricePerItem(int, double);
     
     //  Print methods
