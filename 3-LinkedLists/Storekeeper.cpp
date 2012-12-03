@@ -59,6 +59,11 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
     
     Widget *nextBatchOfWidgets = widgets;
     
+    if (nextBatchOfWidgets == NULL) {
+        printSales(sales, numberOfWidgetsToSell);
+        return;
+    }
+    
     //
     //  Get the price per widget for this batch
     //
