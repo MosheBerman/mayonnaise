@@ -25,7 +25,9 @@ class Storekeeper {
     
 public:
     
-    Storekeeper():numberOfPromotionsRemaining(0), promotionRate(0.0){};
+    Storekeeper():numberOfPromotionsRemaining(0), promotionRate(0.0){
+        widgets = new Widget();
+    };
     
     //  Getters and setters
     
