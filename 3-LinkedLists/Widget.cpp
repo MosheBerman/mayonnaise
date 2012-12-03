@@ -32,5 +32,9 @@ Widget* Widget::dequeue(){
         first = widget->next;
     }
     
+    if (widget == widget->last) {
+        widget = last = NULL;
+    }
+    
     return widget;
 }
