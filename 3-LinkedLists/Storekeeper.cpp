@@ -13,7 +13,7 @@
 void Storekeeper::setPromotionRate(double _promotionRate){
     //  A negative "promotion" rate
     // could mean a temporary markup.
-    promotionRate = _promotionRate;
+    promotionRate = _promotionRate;    
 }
 
 int Storekeeper::getNumberOfPromotions(){
@@ -22,10 +22,12 @@ int Storekeeper::getNumberOfPromotions(){
 
 void Storekeeper::beginPromotion(){
     numberOfPromotionsRemaining = 2;
+    std::cout << "The next two customers will receive a " << promotionRate << "% discount." << std::endl;
 }
 
 void Storekeeper::receiveNumWidgetsAtPrice(int numberOfWidgets, double price){
     widgets->enqueue(new Widget(numberOfWidgets, price));
+    std::cout << "Stocking " << numberOfWidgets << " at $" << price << " each." << std::endl;
 }
 
 //
