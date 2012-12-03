@@ -29,7 +29,7 @@ int main(int argc, const char * argv[])
     std::string fileName = "Input.txt";
     
     if(!openInputStream(records, fileName)){
-        cout << "Couldn't open " << fileName << std::endl;
+        std::cout << "Couldn't open " << fileName << std::endl;
         throw runtime_error("Couldn't open " + fileName);
     }
     
