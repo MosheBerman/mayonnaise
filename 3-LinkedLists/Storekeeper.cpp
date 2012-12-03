@@ -8,6 +8,7 @@
 
 #include "Storekeeper.h"
 #include <numeric>
+#include <algorithm>
 
 void Storekeeper::setPromotionRate(double _promotionRate){
     //  A negative "promotion" rate
@@ -24,23 +25,11 @@ void Storekeeper::beginPromotion(){
 }
 
 void Storekeeper::receiveNumWidgetsAtWidgetsAtPrice(int numberOfWidgets, double price){
-    Widget widget = Widget(numberOfWidgets, price);
-    widgets.push_back(widget);
+    Widget *widget = new Widget(numberOfWidgets, price);
+    widgets->enqueue(widget);
 }
 
 void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches){
-    
-    //
-    //  If there are no widgets left, print out
-    //  the message mentioned in the spec, and return.
-    //
-    
-    if (widgets.empty() || numberOfWidgetsToSell == 0) {
-        
-        
-        std::cout << "remainder " << numberOfWidgetsToSell << " not available." << std::endl;
-        return;
-    }
     
     //
     //  Keep track of batches of sales
@@ -52,45 +41,64 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
     //  If there are more widgets, pull them off of the Storekeeper.
     //
     
-    Widget nextBatchOfWidgets = widgets.front();
+    Widget *nextBatchOfWidgets = widgets;
     
     //
     //  Get the price per widget for this batch
     //
     
-    double pricePerItem = nextBatchOfWidgets.getPrice();
+    double pricePerItem = nextBatchOfWidgets->price;
     double quantityAvailable = quantityAvailableForDesiredQuantity(nextBatchOfWidgets, numberOfWidgetsToSell);
     
-    //
+    //  Hang on to the sale until we're finished
     Sale sale = Sale(quantityAvailable, pricePerItem);
+    soldBatches.push_back(sale);
     
+    //
+    //  If we're not selling all of the widgets from this
+    //  batch, then try the next batch of widgets.
+    //
+    
+    if (quantityAvailable < numberOfWidgetsToSell && widgets->next != NULL) {
+        
+        //
+        //  If there are more Widgets in another batch,
+        //  then we want to sell those too.
+        //
+        
+        widgets->dequeue();
+        
+        sellNumberOfWidgets(numberOfWidgetsToSell, soldBatches);
+
+    }
+    
+    //
+    //  Otherwise, print the sales and the unfilled portion of the order
+    //
+    
+    else{
+        printSales(sales, numberOfWidgetsToSell);
+    }
 }
 
 //
 //  Check the current batch for widgets.
-//  If there's enough, take those and subtract them,
-//  otherwise, 
+//  If there's enough, take those and subtract them.
 //
 
-double Storekeeper::quantityAvailableForDesiredQuantity(Widget batch, int numberOfWidgetsToSell) {
+double Storekeeper::quantityAvailableForDesiredQuantity(Widget *batch, int numberOfWidgetsToSell) {
     
-    double quantityAvailable = batch.getQuantity();
+    if (batch == NULL) {
+        return 0;
+    }
+    
+    double quantityAvailable = batch->quantity;
     
     if (quantityAvailable >= numberOfWidgetsToSell) {
         quantityAvailable = numberOfWidgetsToSell;
+        //  Update the quantity
+        batch->quantity = quantityAvailable - numberOfWidgetsToSell;
     }
-    
-    //
-    //  If we're using all of the widgets,
-    //  there's no more in the batch, so pop it.
-    //
-    
-    else{
-        widgets.pop_front();
-    }
-    
-    //  Update the quantity
-    batch.setQuantity(quantityAvailable - numberOfWidgetsToSell);
     
     return quantityAvailable;
 }
@@ -114,18 +122,41 @@ double Storekeeper::priceForNWidgetsAtPricePerItem(int n, double pricePerItem){
     return priceOfBatch;
 }
 
+//
+//  Takes a sum and a sale,
+//  adds the sale to the sum,
+//  and returns the new sum.
+//
+
 int sum(int sum, Sale sale){
     return sum += sale.getQuantity();
 }
 
-void Storekeeper::printSales(std::vector<Sale> &sales){
+//
+//  Prints a given sale 
+//
+
+void printSale(Sale sale){
     
-    int itemsSold = std::accumulate(sales.begin(), sales.end(), 0, sum);
-
-
+    std::cout << "Sold \t" << sale.getQuantity() << " at \t" << sale.getPricePerUnit() << " each." << std::endl;
     
 }
 
-void sum(){
+//
+//  Use an iterator to count and
+//  print out the number of sold
+//  widget units.
+//
+
+void Storekeeper::printSales(std::vector<Sale> &sales, int remainder){
     
+    int itemsSold = std::accumulate(sales.begin(), sales.end(), 0, sum);
+    
+    std::cout << itemsSold << " items sold." << std::endl;
+    
+    std::for_each(sales.begin(), sales.end(), printSale);
+    
+    if (remainder > 0) {
+        std::cout << "remainder " << remainder << " Widgets unavailable." << std::endl;
+    }
 }

@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Widget.h"
 #import "Sale.h"
+#import <vector>
 
 
 class Storekeeper {
@@ -35,9 +36,9 @@ public:
     void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches);
 
     //  Sale helper methods
-    double quantityAvailableForDesiredQuantity(Widget, int);
+    double quantityAvailableForDesiredQuantity(Widget*, int);
     double priceForNWidgetsAtPricePerItem(int, double);
-    void printSales(std::vector<Sale> &sales);
+    void printSales(std::vector<Sale> &sales, int);
 };
 
 #endif /* defined(____LinkedLists__Storekeeper__) */
