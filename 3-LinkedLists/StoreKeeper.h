@@ -41,7 +41,10 @@ public:
     //  Sale helper methods
     double quantityAvailableForDesiredQuantity(Widget*, int);
     double priceForNWidgetsAtPricePerItem(int, double);
+    
+    //  Print methods
     void printSales(std::vector<Sale> &sales, int);
+    void printOverstock();
 };
 
 #endif /* defined(____LinkedLists__Storekeeper__) */

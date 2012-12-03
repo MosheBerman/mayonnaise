@@ -176,3 +176,17 @@ void Storekeeper::printSales(std::vector<Sale> &sales, int remainder){
         std::cout << "remainder " << remainder << " Widgets unavailable." << std::endl;
     }
 }
+
+void Storekeeper::printOverstock(){
+    
+    Widget *overstock = widgets->dequeue();
+    
+    if (overstock != NULL) {
+        std::cout << "\n\n\nOverstock:\n\n";
+    }
+    
+    while (overstock != NULL) {
+        std::cout << overstock->quantity << " remain at ";
+        std::cout << overstock -> price << std::endl;
+    }
+}
