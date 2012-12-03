@@ -9,6 +9,7 @@
 #include "Storekeeper.h"
 #include <numeric>
 #include <algorithm>
+#include <iomanip>
 
 void Storekeeper::setPromotionRate(double _promotionRate){
     //  A negative "promotion" rate
@@ -216,7 +217,7 @@ void Storekeeper::printOverstock(){
     }
     
     while (overstock != NULL) {
-        std::cout << overstock->quantity << " remain at ";
+        std::cout << overstock->quantity << " remain at $";
         std::cout << overstock -> price << std::endl;
         overstock = widgets->dequeue();
     }
