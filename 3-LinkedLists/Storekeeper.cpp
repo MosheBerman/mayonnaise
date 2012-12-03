@@ -85,6 +85,7 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
         widgets->dequeue();
         
         sellNumberOfWidgets(numberOfWidgetsToSell, soldBatches);
+        
 
     }
     
@@ -139,13 +140,19 @@ double Storekeeper::priceForNWidgetsAtPricePerItem(int n, double pricePerItem){
 }
 
 //
-//  Takes a sum and a sale,
-//  adds the sale to the sum,
-//  and returns the new sum.
+//  Sums the number of items sold.
 //
 
-int sum(int sum, Sale sale){
+int totalQuantitySold(int sum, Sale sale){
     return sum += sale.getQuantity();
+}
+
+//
+//  Sums the revenue of the sale.
+//
+
+double totalRevenue(double revenue, Sale sale){
+    return revenue += (sale.getPricePerUnit() * sale.getQuantity());
 }
 
 //
@@ -154,7 +161,7 @@ int sum(int sum, Sale sale){
 
 void printSale(Sale sale){
     
-    std::cout << "Sold \t" << sale.getQuantity() << " at \t" << sale.getPricePerUnit() << " each." << std::endl;
+    std::cout << "Sold \t" << sale.getQuantity() << " at \t$" << sale.getPricePerUnit() << " each." << std::endl;
     
 }
 
@@ -166,11 +173,33 @@ void printSale(Sale sale){
 
 void Storekeeper::printSales(std::vector<Sale> &sales, int remainder){
     
-    int itemsSold = std::accumulate(sales.begin(), sales.end(), 0, sum);
+    //
+    //  Print how many were sold.
+    //
+    
+    int itemsSold = std::accumulate(sales.begin(), sales.end(), 0, totalQuantitySold);
     
     std::cout << itemsSold << " items sold." << std::endl;
     
+    //
+    //  Print each sale.
+    //
+    
     std::for_each(sales.begin(), sales.end(), printSale);
+    
+    //
+    //  Print the total sum
+    //
+    
+    double sumRevenue = std::accumulate(sales.begin(), sales.end(), 0, totalRevenue);
+    
+    std::cout << "\t\t\tTotal Sales: $" << sumRevenue << std::endl;
+    
+    //
+    //  If there were remaining sales,
+    //  print the unfilled portion
+    //  of the order.
+    //
     
     if (remainder > 0) {
         std::cout << "remainder " << remainder << " Widgets unavailable." << std::endl;
