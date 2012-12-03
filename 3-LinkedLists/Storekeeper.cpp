@@ -46,7 +46,7 @@ void Storekeeper::sellWidgets(int numberOfWidgets){
 //  This method sells widgets from the widgets tree recursively
 //
 
-void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches){
+void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale> soldBatches){
 
     
     //
@@ -172,7 +172,7 @@ void printSale(Sale sale){
 //  widget units.
 //
 
-void Storekeeper::printSales(std::vector<Sale> &sales, int remainder){
+void Storekeeper::printSales(std::vector<Sale> sales, int remainder){
     
     //
     //  Print how many were sold.

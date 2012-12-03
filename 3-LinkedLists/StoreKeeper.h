@@ -21,7 +21,7 @@ class Storekeeper {
     double promotionRate;
     
     //  Pass along an previous batches so we can recurse
-    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches);
+    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale> soldBatches);
     
 public:
     
@@ -45,7 +45,7 @@ public:
     double priceForNWidgetsAtPricePerItem(int, double);
     
     //  Print methods
-    void printSales(std::vector<Sale> &sales, int);
+    void printSales(std::vector<Sale> sales, int);
     void printOverstock();
 };
 
