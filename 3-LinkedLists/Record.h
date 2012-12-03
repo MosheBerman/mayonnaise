@@ -14,7 +14,7 @@
 enum kRecordType {
     kRecordTypeSale = 0,
     kRecordTypeReciept = 1,
-    kRecordTypePromotion
+    kRecordTypePromotion = 2
     };
 
 class Record {
