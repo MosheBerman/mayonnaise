@@ -47,12 +47,7 @@ void Storekeeper::sellWidgets(int numberOfWidgets){
 //
 
 void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches){
-    
-    //
-    //  Keep track of batches of sales
-    //
-    
-    std::vector<Sale> sales;
+
     
     //
     //  If there are more widgets, pull them off of the Storekeeper.
@@ -61,7 +56,7 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
     Widget *nextBatchOfWidgets = widgets;
     
     if (nextBatchOfWidgets == NULL) {
-        printSales(sales, numberOfWidgetsToSell);
+        printSales(soldBatches, numberOfWidgetsToSell);
         return;
     }
     
@@ -100,7 +95,7 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
     //
     
     else{
-        printSales(sales, numberOfWidgetsToSell);
+        printSales(soldBatches, numberOfWidgetsToSell);
     }
 }
 
