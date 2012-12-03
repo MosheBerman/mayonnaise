@@ -105,9 +105,9 @@ void Storekeeper::sellWidgets(int numberOfWidgetsToSell){
             //  Print out a message
             //
             
-            std::cout << "Sold " << quantity;
+            std::cout << "Sold " << numberOfWidgetsSold;
             std::cout << std::setprecision(2) << std::fixed;
-            std::cout << " at $" << price <<std::endl;
+            std::cout << " at $" << price * 1.3 <<std::endl;
         }
         
         //
