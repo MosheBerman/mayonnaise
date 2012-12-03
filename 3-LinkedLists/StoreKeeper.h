@@ -37,7 +37,7 @@ public:
     
     //  Buy and sell widgets
     
-    void receiveNumWidgetsAtWidgetsAtPrice(int, double);
+    void receiveNumWidgetsAtPrice(int, double);
     void sellWidgets(int);
 
     //  Sale helper methods

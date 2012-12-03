@@ -24,7 +24,7 @@ void Storekeeper::beginPromotion(){
     numberOfPromotionsRemaining = 2;
 }
 
-void Storekeeper::receiveNumWidgetsAtWidgetsAtPrice(int numberOfWidgets, double price){
+void Storekeeper::receiveNumWidgetsAtPrice(int numberOfWidgets, double price){
     Widget *widget = new Widget(numberOfWidgets, price);
     widgets->enqueue(widget);
 }

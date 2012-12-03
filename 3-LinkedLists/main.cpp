@@ -20,13 +20,22 @@
 
 int main(int argc, const char * argv[])
 {
+    
+    //
+    //  Set up the file
+    //
 
     ifstream records;
     std::string fileName = "Input.txt";
+    
     if(!openInputStream(records, fileName)){
         cout << "Couldn't open " << fileName << std::endl;
         throw runtime_error("Couldn't open " + fileName);
     }
+    
+    //
+    //  A line buffer
+    //
     
     std::string line;
     
@@ -62,7 +71,7 @@ int main(int argc, const char * argv[])
             shop->sellWidgets(r.getQuantity());
         }
         else if(r.getRecordType() == kRecordTypeReciept){
-            shop->receiveNumWidgetsAtWidgetsAtPrice(r.getQuantity(), r.getPricePerWidget());
+            shop->receiveNumWidgetsAtPrice(r.getQuantity(), r.getPricePerWidget());
         }
     }
     
