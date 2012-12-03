@@ -87,7 +87,7 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
         //  then we want to sell those too.
         //
         
-        widgets->dequeue();
+        widgets = widgets->dequeue();
         
         sellNumberOfWidgets(numberOfWidgetsToSell, soldBatches);
         
