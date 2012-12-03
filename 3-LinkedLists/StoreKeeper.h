@@ -19,6 +19,10 @@ class Storekeeper {
     Widget* widgets;
     int numberOfPromotionsRemaining;
     double promotionRate;
+    
+    //  Pass along an previous batches so we can recurse
+    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches);
+    
 public:
     
     Storekeeper():numberOfPromotionsRemaining(0), promotionRate(0.0){};
@@ -32,8 +36,7 @@ public:
     //  Buy and sell widgets
     
     void receiveNumWidgetsAtWidgetsAtPrice(int, double);
-    //  Pass along an previous batches so we can recurse
-    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches);
+    void sellWidgets(int);
 
     //  Sale helper methods
     double quantityAvailableForDesiredQuantity(Widget*, int);

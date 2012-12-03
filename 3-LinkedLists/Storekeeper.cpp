@@ -29,6 +29,22 @@ void Storekeeper::receiveNumWidgetsAtWidgetsAtPrice(int numberOfWidgets, double 
     widgets->enqueue(widget);
 }
 
+//
+//  This public method wraps the sales method
+//  so that it can keep an internal vector
+//  around for recursion purposes.
+//
+
+void Storekeeper::sellWidgets(int numberOfWidgets){
+    
+    std::vector<Sale> sales;
+    sellNumberOfWidgets(numberOfWidgets, sales);
+}
+
+//
+//  This method sells widgets from the widgets tree recursively
+//
+
 void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale>& soldBatches){
     
     //
