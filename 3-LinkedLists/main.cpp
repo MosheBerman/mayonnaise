@@ -14,7 +14,6 @@
 #include "FileIO.h"
 
 #include "Record.h"
-#include "Sale.h"
 #include "StoreKeeper.h"
 #include "Widget.h"
 

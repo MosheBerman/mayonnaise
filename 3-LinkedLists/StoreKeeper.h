@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include "Widget.h"
-#import "Sale.h"
 #import <vector>
 
 
@@ -42,7 +41,6 @@ public:
     double priceForNWidgetsAtPricePerItem(int, double);
     
     //  Print methods
-    void printSales(std::vector<Sale> sales, int);
     void printOverstock();
 };
 
