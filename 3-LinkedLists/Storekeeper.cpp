@@ -80,7 +80,7 @@ void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sal
     //  batch, then try the next batch of widgets.
     //
     
-    if (quantityAvailable < numberOfWidgetsToSell && widgets->next != NULL) {
+    if (quantityAvailable < numberOfWidgetsToSell) {
         
         //
         //  If there are more Widgets in another batch,
