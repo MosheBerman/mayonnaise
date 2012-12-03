@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		464B158B166B766F004E50E0 /* Storekeeper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 464B1589166B766F004E50E0 /* Storekeeper.cpp */; };
 		464B158E166B7790004E50E0 /* Widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 464B158C166B7790004E50E0 /* Widget.cpp */; };
-		46B743DA166BA16A0089F4A2 /* Sale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46B743D8166BA16A0089F4A2 /* Sale.cpp */; };
 		46B743DE166BAF6B0089F4A2 /* Record.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46B743DC166BAF6B0089F4A2 /* Record.cpp */; };
 		46C0457C1665D1D300638179 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46C0457B1665D1D300638179 /* main.cpp */; };
 		46C0457E1665D1D300638179 /* __LinkedLists.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 46C0457D1665D1D300638179 /* __LinkedLists.1 */; };
@@ -35,8 +34,6 @@
 		464B158A166B766F004E50E0 /* StoreKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKeeper.h; sourceTree = "<group>"; };
 		464B158C166B7790004E50E0 /* Widget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Widget.cpp; sourceTree = "<group>"; };
 		464B158D166B7790004E50E0 /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
-		46B743D8166BA16A0089F4A2 /* Sale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sale.cpp; sourceTree = "<group>"; };
-		46B743D9166BA16A0089F4A2 /* Sale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sale.h; sourceTree = "<group>"; };
 		46B743DC166BAF6B0089F4A2 /* Record.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Record.cpp; sourceTree = "<group>"; };
 		46B743DD166BAF6B0089F4A2 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		46C045771665D1D300638179 /* 3-LinkedLists */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "3-LinkedLists"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,8 +59,6 @@
 			children = (
 				46B743DC166BAF6B0089F4A2 /* Record.cpp */,
 				46B743DD166BAF6B0089F4A2 /* Record.h */,
-				46B743D8166BA16A0089F4A2 /* Sale.cpp */,
-				46B743D9166BA16A0089F4A2 /* Sale.h */,
 				464B158D166B7790004E50E0 /* Widget.h */,
 				464B158C166B7790004E50E0 /* Widget.cpp */,
 				464B1589166B766F004E50E0 /* Storekeeper.cpp */,
@@ -164,7 +159,6 @@
 				46C0458B1666A8F000638179 /* FileIO.cpp in Sources */,
 				464B158B166B766F004E50E0 /* Storekeeper.cpp in Sources */,
 				464B158E166B7790004E50E0 /* Widget.cpp in Sources */,
-				46B743DA166BA16A0089F4A2 /* Sale.cpp in Sources */,
 				46B743DE166BAF6B0089F4A2 /* Record.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
