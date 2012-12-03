@@ -96,6 +96,16 @@ int Record::quantityFromString(std::string record){
 
 int Record::saleAmountFromString(std::string record){
 
+    //
+    //   Clean out the percent sign
+    //
+    
+    size_t locationOfPercent = record.find('%');
+    
+    if (locationOfPercent != std::string::npos) {
+        record.replace(locationOfPercent, locationOfPercent+1, "");
+    }
+    
     std::istringstream recordStream(record);
     
     char c;
