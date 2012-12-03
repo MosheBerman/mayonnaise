@@ -105,7 +105,9 @@ void Storekeeper::sellWidgets(int numberOfWidgetsToSell){
             //  Print out a message
             //
             
-            std::cout << "Sold " << quantity << " at $" << price <<std::endl;
+            std::cout << "Sold " << quantity;
+            std::cout << std::setprecision(2) << std::fixed;
+            std::cout << " at $" << price <<std::endl;
         }
         
         //
@@ -123,59 +125,9 @@ void Storekeeper::sellWidgets(int numberOfWidgetsToSell){
         
     }
     
-    std::cout << "\t\t" << "Total Sales: $" << totalPrice << "\n" << std::endl;
-    
-    /*
-    //
-    //  If there are more widgets, pull them off of the Storekeeper.
-    //
-    
-    Widget* nextBatchOfWidgets = remove(queue);
-    
-    printSales(soldBatches, numberOfWidgetsToSell);
-    return;
-
-    
-    //
-    //  Get the price per widget for this batch
-    //
-    
-    double pricePerItem = nextBatchOfWidgets.price;
-    double quantityAvailable = quantityAvailableForDesiredQuantity(nextBatchOfWidgets, numberOfWidgetsToSell);
-    
-    //  Hang on to the sale until we're finished
-    Sale sale = Sale(quantityAvailable, pricePerItem);
-    soldBatches.push_back(sale);
-    
-    //
-    //  If we're not selling all of the widgets from this
-    //  batch, then try the next batch of widgets.
-    //
-    
-    if (quantityAvailable < numberOfWidgetsToSell) {
-        
-        //
-        //  If there are more Widgets in another batch,
-        //  then we want to sell those too.
-        //
-        
-        widgets = widgets->dequeue();
-        
-        sellNumberOfWidgets(numberOfWidgetsToSell, soldBatches);
-        
-
-    }
-    
-    //
-    //  Otherwise, print the sales and the unfilled portion of the order
-    //
-    
-    else{
-        printSales(soldBatches, numberOfWidgetsToSell);
-    }
-    */
-    
-    
+    std::cout << "\t\t" << "Total Sales: $";
+    std::cout << std::setprecision(2) << std::fixed;
+    std::cout << totalPrice << "\n" << std::endl;
     
 }
 
