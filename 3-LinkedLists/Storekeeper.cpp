@@ -23,7 +23,7 @@ int Storekeeper::getNumberOfPromotions(){
 
 void Storekeeper::beginPromotion(){
     numberOfPromotionsRemaining = 2;
-    std::cout << "The next two customers will receive a " << promotionRate << "% discount." << std::endl;
+    std::cout << "\nThe next two customers will receive a " << promotionRate << "% discount. \n" << std::endl;
 }
 
 void Storekeeper::receiveNumWidgetsAtPrice(int numberOfWidgets, double price){
@@ -38,18 +38,93 @@ void Storekeeper::receiveNumWidgetsAtPrice(int numberOfWidgets, double price){
 //  around for recursion purposes.
 //
 
-void Storekeeper::sellWidgets(int numberOfWidgets){
+void Storekeeper::sellWidgets(int numberOfWidgetsToSell){
+
+    //
+    //  Count how many widgets we sold
+    //  and the total revenue.
+    //
     
-    std::vector<Sale> sales;
-    sellNumberOfWidgets(numberOfWidgets, sales);
-}
-
-//
-//  This method sells widgets from the widgets tree recursively
-//
-
-void Storekeeper::sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale> soldBatches){
-
+    int numberOfWidgetsSold = 0;
+    double totalPrice = 0.0;
+    
+    //
+    //  While we have widgets to sell, let's try and sell them.
+    //
+    
+    while (numberOfWidgetsToSell > 0) {
+        
+        //
+        //  If there's nothing to sell, we need to break the loop.
+        //
+        
+        if (empty(queue)) {
+            
+            std::cout << "remainder of " << numberOfWidgetsToSell << " Widgets not available." << std::endl;
+            break;
+        }
+        
+        int quantity = (queue->front)->quantity;
+        double price = (queue->front)->price;
+        
+        //
+        //  If there's enough stock, sell it.
+        //
+        
+        if (quantity >= numberOfWidgetsToSell) {
+            
+            //
+            //  First, let's remove the items
+            //  from the queue.
+            //
+            
+            (queue->front)->quantity -= numberOfWidgetsToSell;
+            
+            //
+            //  Let's also count them.
+            //
+            
+            numberOfWidgetsSold += numberOfWidgetsToSell;
+            numberOfWidgetsToSell -= numberOfWidgetsSold;
+            
+            //
+            //  Now we want to get the total price
+            //
+            
+            totalPrice += (price * 1.3 * (double)numberOfWidgetsSold);
+            
+            //
+            //  If applicable, calculate promotional price.
+            //
+            
+            if (numberOfPromotionsRemaining > 0) {
+                totalPrice = (promotionRate/100) * totalPrice;
+            }
+            
+            //
+            //  Print out a message
+            //
+            
+            std::cout << "Sold " << quantity << " at $" << price <<std::endl;
+        }
+        
+        //
+        //  If we're short on supply, move on to the next batch.
+        //  Remove the front node and continue.
+        //
+        
+        else{
+            
+            remove(queue);
+            
+            continue;
+            
+        }
+        
+    }
+    
+    std::cout << "\t\t" << "Total Sales: $" << totalPrice << "\n" << std::endl;
+    
     /*
     //
     //  If there are more widgets, pull them off of the Storekeeper.
@@ -141,80 +216,13 @@ double Storekeeper::priceForNWidgetsAtPricePerItem(int n, double pricePerItem){
     return priceOfBatch;
 }
 
-//
-//  Sums the number of items sold.
-//
-
-int totalQuantitySold(int sum, Sale sale){
-    return sum += sale.getQuantity();
-}
-
-//
-//  Sums the revenue of the sale.
-//
-
-double totalRevenue(double revenue, Sale sale){
-    return revenue += (sale.getPricePerUnit() * sale.getQuantity());
-}
-
-//
-//  Prints a given sale 
-//
-
-void printSale(Sale sale){
-    
-    std::cout << "Sold \t" << sale.getQuantity() << " at \t$" << sale.getPricePerUnit() << " each." << std::endl;
-    
-}
-
-//
-//  Use an iterator to count and
-//  print out the number of sold
-//  widget units.
-//
-
-void Storekeeper::printSales(std::vector<Sale> sales, int remainder){
-    
-    //
-    //  Print how many were sold.
-    //
-    
-    int itemsSold = std::accumulate(sales.begin(), sales.end(), 0, totalQuantitySold);
-    
-    std::cout << itemsSold << " items sold." << std::endl;
-    
-    //
-    //  Print each sale.
-    //
-    
-    std::for_each(sales.begin(), sales.end(), printSale);
-    
-    //
-    //  Print the total sum
-    //
-    
-    double sumRevenue = std::accumulate(sales.begin(), sales.end(), 0, totalRevenue);
-    
-    std::cout << "\t\t\tTotal Sales: $" << sumRevenue << std::endl;
-    
-    //
-    //  If there were remaining sales,
-    //  print the unfilled portion
-    //  of the order.
-    //
-    
-    if (remainder > 0) {
-        std::cout << "remainder " << remainder << " Widgets unavailable." << std::endl;
-    }
-}
-
 void Storekeeper::printOverstock(){
     
     if (empty(queue)) {
         return;
     }
     
-    std::cout << "\n\n\nOverstock:\n\n";
+    std::cout << "\nOverstock:\n\n";
     
     while (!empty(queue)) {
         Widget overstock = remove(queue);

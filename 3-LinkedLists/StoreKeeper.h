@@ -20,9 +20,6 @@ class Storekeeper {
     int numberOfPromotionsRemaining;
     double promotionRate;
     
-    //  Pass along an previous batches so we can recurse
-    void sellNumberOfWidgets(int numberOfWidgetsToSell, std::vector<Sale> soldBatches);
-    
 public:
     
     Storekeeper():numberOfPromotionsRemaining(0), promotionRate(0.0){
