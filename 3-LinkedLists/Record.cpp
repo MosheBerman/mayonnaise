@@ -9,14 +9,12 @@
 #include "Record.h"
 #include <sstream>
 
-Record::Record(){
-    recordType = kRecordTypeSale;
-    quantity = 0;
-    saleAmount = 0;
-    pricePerWidget = 0;
+
+Record::Record():pricePerWidget(0), quantity(0), saleAmount(0){
+
 }
 
-Record::Record(std::string record){
+Record::Record(std::string record):pricePerWidget(0), quantity(0), saleAmount(0){
     recordType = recordTypeFromString(record);
     quantity = quantityFromString(record);
     saleAmount = saleAmountFromString(record);
@@ -95,7 +93,7 @@ int Record::quantityFromString(std::string record){
 }
 
 int Record::saleAmountFromString(std::string record){
-
+    
     //
     //   Clean out the percent sign
     //
@@ -111,22 +109,36 @@ int Record::saleAmountFromString(std::string record){
     char c;
     int quantity;
     
-    recordStream >> c;  //Read in and summarily discard the first character
+    recordStream >> c;
+    
+    //  Return 0 if we're not reading in a promotion
+    if (c != 'P') {
+        return 0;
+    }
+    
     recordStream >> quantity;
     
     return quantity;
 }
 
 double Record::priceFromString(std::string record){
+    
+    std::string r = record;
+    
     std::istringstream recordStream(record);
     
     char c;
     int quantity;
     double price;
     
-    recordStream >> c;  //Read in and summarily discard the first character
+    recordStream >> c;  
     recordStream >> quantity;
+    
     recordStream >> price;
+    
+    if (c != 'R') {
+        price = 0;
+    }
     
     return price;
     
