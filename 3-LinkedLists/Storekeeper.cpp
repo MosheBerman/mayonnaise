@@ -57,9 +57,8 @@ void Storekeeper::sellWidgets(int numberOfWidgetsToSell){
     while (numberOfWidgetsToSell > 0) {
         
         //
-        //  Read out the quantity and the price
+        //  If there's no widgets, we need to return.
         //
-        
         
         if (empty(queue)) {
             
