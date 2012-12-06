@@ -73,10 +73,10 @@ kRecordType Record::recordTypeFromString(std::string record){
         return kRecordTypeReciept;
     }
     
-    return kRecordTypePromotion;   //  Assume that we have valid
-                                        //  input and that we will have
-                                        //  processed the other two kinds
-                                        //  of records.
+    return kRecordTypePromotion;    //  Assume that we have valid
+                                    //  input and that we will have
+                                    //  processed the other two kinds
+                                    //  of records.
 }
 
 int Record::quantityFromString(std::string record){
