@@ -20,7 +20,9 @@
 int main(int argc, const char * argv[])
 {
     
-    /*  Set up the file and a line buffer */
+    //
+    //  Set up the file and a line buffer
+    //
 
     ifstream records;
     std::string fileName = "Input.txt";
@@ -32,16 +34,22 @@ int main(int argc, const char * argv[])
     
     std::string line;
     
-    /*  Skip the first two lines, they're whitespace */
+    //
+    //  Skip the first two lines, they're whitespace
+    //
     
     getline(records, line);
     getline(records, line);
 
-    /*  Create a storekeeper instance to process sales. */
+    //
+    //  Create a storekeeper instance to process sales.
+    //
     
     Storekeeper *shop = new Storekeeper();
     
-    /*  Process the input files. */
+    //
+    //  Process the input files.
+    //
     
     while (getline(records, line)) {
         
