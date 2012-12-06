@@ -29,7 +29,7 @@ void Storekeeper::beginPromotion(){
 void Storekeeper::receiveNumWidgetsAtPrice(int numberOfWidgets, double price){
     
     insert(queue, numberOfWidgets, price);
-    std::cout << "Stocking " << numberOfWidgets << " at $" << price << " each." << std::endl;
+    std::cout << "Stocking " << numberOfWidgets << " at $" << price << " per unit." << std::endl;
 }
 
 //
@@ -48,6 +48,8 @@ void Storekeeper::sellWidgets(int numberOfWidgetsToSell){
     int numberOfWidgetsSold = 0;
     double totalPrice = 0.0;
     
+    std::cout << "\n--- Sale ---" << std::endl;
+    
     //
     //  While we have widgets to sell, let's try and sell them.
     //
@@ -55,79 +57,82 @@ void Storekeeper::sellWidgets(int numberOfWidgetsToSell){
     while (numberOfWidgetsToSell > 0) {
         
         //
-        //  If there's nothing to sell, we need to break the loop.
+        //  Read out the quantity and the price
         //
+        
         
         if (empty(queue)) {
             
-            std::cout << "remainder of " << numberOfWidgetsToSell << " Widgets not available." << std::endl;
+            std::cout << "The remaining " << numberOfWidgetsToSell << " widgets are not available." << std::endl;
             break;
         }
         
-        int quantity = (queue->front)->quantity;
-        double price = (queue->front)->price;
+        int quantity = queue->front->quantity;
+        double price = queue->front->price;
         
         //
-        //  If there's enough stock, sell it.
+        //  There's enough to sell.
         //
         
-        if (quantity >= numberOfWidgetsToSell) {
+        if (quantity > numberOfWidgetsToSell) {
             
             //
-            //  First, let's remove the items
-            //  from the queue.
-            //
-            
-            (queue->front)->quantity -= numberOfWidgetsToSell;
-            
-            //
-            //  Let's also count them.
+            //  Sell...
             //
             
             numberOfWidgetsSold += numberOfWidgetsToSell;
-            numberOfWidgetsToSell -= numberOfWidgetsSold;
+            queue->front->quantity -= numberOfWidgetsToSell;
+            numberOfWidgetsToSell = 0;
             
             //
-            //  Now we want to get the total price
+            //  Calculate price
+            //
+            
+            totalPrice += (price * 1.3 * (double)numberOfWidgetsSold);
+
+        }
+        
+        //
+        //  There are widgets, but not enough
+        //
+        
+        else if(quantity > 0){
+            
+            //
+            //  Sell...
+            //
+            
+            numberOfWidgetsSold += quantity;
+            queue->front->quantity -= numberOfWidgetsToSell;
+            numberOfWidgetsToSell -= quantity;
+            
+            //
+            //  Calculate price
             //
             
             totalPrice += (price * 1.3 * (double)numberOfWidgetsSold);
             
             //
-            //  If applicable, calculate promotional price.
+            //  remove the now empty item from the queue
             //
-            
-            if (numberOfPromotionsRemaining > 0) {
-                totalPrice = (promotionRate/100) * totalPrice;
-            }
-            
-            //
-            //  Print out a message
-            //
-            
-            std::cout << "Sold " << numberOfWidgetsSold;
-            std::cout << std::setprecision(2) << std::fixed;
-            std::cout << " at $" << price * 1.3 <<std::endl;
-        }
-        
-        //
-        //  If we're short on supply, move on to the next batch.
-        //  Remove the front node and continue.
-        //
-        
-        else{
             
             remove(queue);
-            
-            continue;
-            
         }
         
+        std::cout << "Sold " << numberOfWidgetsSold;
+        std::cout << std::setprecision(2) << std::fixed;
+        std::cout << " at $" << price * 1.3 << " per unit.";
+        std::cout << std::endl;
+        
+        numberOfWidgetsSold = 0;
     }
+    
     
     std::cout << "\t\t" << "Total Sales: $";
     std::cout << std::setprecision(2) << std::fixed;
     std::cout << totalPrice << "\n" << std::endl;
+    
+    totalPrice = 0;
     
 }
 
