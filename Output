@@ -1,0 +1,81 @@
+Stocking 150 at $1 per unit.
+Stocking 130 at $2 per unit.
+
+--- Sale ---
+Sold 145 at $1.30 per unit.
+		Total Sales: $188.50
+
+Stocking 50 at $2.50 per unit.
+
+--- Sale ---
+Sold 5 at $1.30 per unit.
+Sold 70 at $2.60 per unit.
+		Total Sales: $188.50
+
+
+--- Sale ---
+Sold 60 at $2.60 per unit.
+Sold 50 at $3.25 per unit.
+The remaining 70 widgets are not available.
+		Total Sales: $318.50
+
+Stocking 50 at $4.00 per unit.
+Stocking 30 at $5.00 per unit.
+Stocking 40 at $5.50 per unit.
+
+The next two customers will receive a 30.00% discount. 
+
+
+--- Sale ---
+Sold 50 at $5.20 per unit.
+		Total Sales: $260.00
+
+
+--- Sale ---
+Sold 30 at $6.50 per unit.
+		Total Sales: $195.00
+
+Stocking 50 at $6.00 per unit.
+Stocking 265 at $10.00 per unit.
+
+--- Sale ---
+Sold 40 at $7.15 per unit.
+Sold 20 at $7.80 per unit.
+		Total Sales: $442.00
+
+
+The next two customers will receive a 50.00% discount. 
+
+
+--- Sale ---
+Sold 30 at $7.80 per unit.
+Sold 70 at $13.00 per unit.
+		Total Sales: $1144.00
+
+
+--- Sale ---
+Sold 70 at $13.00 per unit.
+		Total Sales: $910.00
+
+
+--- Sale ---
+Sold 125 at $13.00 per unit.
+The remaining 50 widgets are not available.
+		Total Sales: $1625.00
+
+Stocking 40 at $14.00 per unit.
+Stocking 75 at $15.00 per unit.
+
+--- Sale ---
+Sold 40 at $18.20 per unit.
+Sold 70 at $19.50 per unit.
+		Total Sales: $2093.00
+
+Stocking 30 at $16.00 per unit.
+Stocking 40 at $18.00 per unit.
+
+Overstock:
+
+5 remain at $15.00
+30 remain at $16.00
+40 remain at $18.00
