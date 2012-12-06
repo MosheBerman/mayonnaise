@@ -20,9 +20,7 @@
 int main(int argc, const char * argv[])
 {
     
-    //
-    //  Set up the file
-    //
+    /*  Set up the file and a line buffer */
 
     ifstream records;
     std::string fileName = "Input.txt";
@@ -32,31 +30,18 @@ int main(int argc, const char * argv[])
         throw runtime_error("Couldn't open " + fileName);
     }
     
-    //
-    //  A line buffer
-    //
-    
     std::string line;
     
-    //
-    //  Skip the first two lines, since
-    //  they contain unusable data and
-    //  whitespace.
-    //
+    /*  Skip the first two lines, they're whitespace */
     
     getline(records, line);
     getline(records, line);
 
-    //
-    //  Create a storekeeper instance
-    //  to process sales as we go.
-    //
+    /*  Create a storekeeper instance to process sales. */
     
     Storekeeper *shop = new Storekeeper();
     
-    //
-    //  Process the input files.
-    //
+    /*  Process the input files. */
     
     while (getline(records, line)) {
         
